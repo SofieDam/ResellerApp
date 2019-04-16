@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ConsidWebExerciseDatabaseFirst.Stores>
+
+@{
+    ViewBag.Title = "StoreList";
+}
+
+<h1 style="margin:40px 0 20px 0">@ViewBag.CompanyName</h1>
+<h3 style="margin: 0 0 20px 0">Stores</h3>
+<p><a href="@Url.Action("StoreCreate", "CompanyStore")" class="btn btn-primary btn-lg">Add Store</a></p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "StoreEdit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "StoreDetails", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "StoreDelete", new { id = item.Id })
+        </td>
+    </tr>
+
+}
+
+</table>
+

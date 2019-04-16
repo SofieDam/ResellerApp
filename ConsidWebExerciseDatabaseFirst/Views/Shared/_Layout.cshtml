@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("MyApplication", "Index", "CompanyStore", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Company", "List", "CompanyStore")</li>
+                    <li>@Html.ActionLink("Store", "List", "Store")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Consid Web Exercise, MyApplication</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+
+    <!-- Geocoding - Get Google map coordinates from address-->
+    <script>
+    $("#CreateBtn").click(function () {
+
+        var storeObject = document.getElementsByClassName("form-control");
+
+        var storeAddress = "";
+        for (var i = 1; i < storeObject.length; i++) {
+            storeAddress = storeAddress + storeObject[i].value + " ";
+        }
+
+        var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + storeAddress + ",CA&key=AIzaSyCGNG86QgBiZ7qPhxmwLZ8V30ubH9hu0AE";
+
+        $.ajax({
+            dataType: "json",
+            url: url,
+            async: false,
+            success: function (response) {
+
+                var longcoord = response.results[0].geometry.location.lng;
+                var latcoord = response.results[0].geometry.location.lat;
+                $("#Longitude").val(longcoord);
+                $("#Latitude").val(latcoord);
+            }
+        });
+    })
+    </script>
+    
+</body>
+</html>
