@@ -29,7 +29,7 @@ namespace ConsidWebExerciseDatabaseFirst
 
         [DisplayName("Company Name")]
         //[RegularExpression(@"^(([A-za-z]+[\s]{1}[A-za-z]+)|([A-Za-z]+))$")]
-        [Required(ErrorMessage = "Company Name is required.")]
+        //[Required(ErrorMessage = "Company Name is required.")]
         public string Name { get; set; }
 
         //[Required(ErrorMessage = "OrganizationNumber is required.")]
